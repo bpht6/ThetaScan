@@ -1,5 +1,7 @@
 # ThetaScan.io
 
+A PHP block explorer for the Theta Blockchain.
+
 **Setup**: 
 
 To run this explorer a Theta node will need to ran on the local machine.  Please follow the Theta node [setup guide](https://github.com/thetatoken/theta-mainnet-integration-guide/blob/master/docs/setup.md#setup) provides the instructions to build and install the Theta Ledger on a Linux machine.
