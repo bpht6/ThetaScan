@@ -1,4 +1,4 @@
-# ThetaScan
+# ThetaScan.io
 
 **Setup**: 
 
