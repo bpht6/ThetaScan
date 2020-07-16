@@ -1,0 +1,25 @@
+<html>
+<body>
+<H1> ThetaScan.io - Example Node Requests</H1>
+The examples below show how to use a post command to integrate into the Theta blockchain.<br>
+They allow you to check a balance, retrieve hash information and broadcast a transaction.<br>
+<HR>
+<H3> Balance Example </H3>
+<form method="post" action="example1.php"> Returns several different format options <br><br>
+	Theta Address: <input type="text" name="address" size = "50" value="0xc15149236229bd13f0aec783a9cc8e8059fb28da">
+	<input type="submit">
+</form><HR>
+<H3> Retrieve Hash Information Example </H3> Returns True JSON output from PHP script<br><br>
+<form method="post" action="example2.php">
+	Theta Address: <input type="text" name="hash" size = "50" value="0xd25c5d038c5b6fa62ab2d208c6da25765ba84ab292756cb1f283445476bc49f4">
+	<input type="submit">
+</form><HR>
+<H3> Broadcast a signed transaction </H3> Returns True JSON output from PHP script<br>The below transaction is a signed transaction from the github repository.<br>
+It will error out and demistrates how to broadcast a signed transaction using a post command.<br><br>
+<form method="post" action="example3.php">
+	Signed Transaction: <input type="text" name="tx_bytes" size = "50" value="02f8a4c78085e8d4a51000f86ff86d942e833968e5bb786ae419c4d13189fb081cc43babd3888ac7230489e800008901158e46f1e875100015b841c2daae6cab92e37308763664fcbe93d90219df5a3520853a9713e70e734b11f27a43db6b77da4f885213b45a294c2b4c74dc9a018d35ba93e5b9297876a293c700eae9949f1233798e905e173560071255140b4a8abd3ec6d3888ac7230489e800008901158e460913d00000">
+	<input type="submit">
+</form><HR>
+
+</body>
+</html>
