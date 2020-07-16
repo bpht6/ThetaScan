@@ -30,7 +30,6 @@ PHP must be installed and configured.
 
 ```
 sudo apt-get install php libapache2-mod-php php-mcrypt php-mysql php-curl
-sudo apt install phpmyadmin php-mbstring php-gettext
 ```
 
 Copy all the PHP files from the website folder to the corresponding folder in Apache.
