@@ -38,7 +38,11 @@ CREATE DATABASE prices;
 CREATE DATABASE transactions;
 
 CREATE TABLE `prices`.`prices` (`name` TEXT NOT NULL, `price` TEXT NOT NULL,`volume` TEXT NOT NULLL,`percent_change` TEXT NOT NULL,`market` TEXT NOT NULL);
-
+CREATE TABLE `transactions`.`coinbase` (`timestamp` TEXT NOT NULL, `block` TEXT NOT NULL,`address` TEXT NOT NULLL,`tfuel` TEXT NOT NULL,`compressed` TEXT NOT NULL);
+CREATE TABLE `transactions`.`block` (`last_block` TEXT NOT NULL, `number` TEXT NOT NULL);
+CREATE TABLE `transactions`.`guardian` (`timestamp` TEXT NOT NULL, `block` TEXT NOT NULL, `type` TEXT NOT NULL, `address` TEXT NOT NULL, `node` TEXT NOT NULL, `hash` TEXT NOT NULL, `theta` TEXT NOT NULL);
+CREATE TABLE `transactions`.`staking_wallets` (`address` TEXT NOT NULL, `theta` TEXT NOT NULL, `status` TEXT NOT NULL, `timestamp` TEXT NOT NULL, `process` TEXT NOT NULL);
+CREATE TABLE `transactions`.`transactions` (`block` TEXT NOT NULL, `fee_thetawei` TEXT NOT NULL, `fee_tfuelwei` TEXT NOT NULL, `add_from` TEXT NOT NULL, `sent_thetawei` TEXT NOT NULL, `sent_tfuelwei` TEXT NOT NULL, `add_to` TEXT NOT NULL, `type` TEXT NOT NULL, `hash` TEXT NOT NULL);
 ```
 
 Copy all the PHP files from the website folder to the corresponding folder in Apache.
