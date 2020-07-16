@@ -2,7 +2,7 @@
 
 A PHP block explorer for the Theta Blockchain.  
 
-To run these examples you must have a Linux Server running a Theta Node on port 16888.  If it is running on a different port you will need to edit the example file to the correct port number.  The index file is an example of how to post from a web server and below is how to post from a IPhone application. 
+To run these examples you must have a Linux Server running a Theta Node on port 16888.  If it is running on a different port you will need to edit the example file to the correct port number.  The index file is an example of how to use a post from a web server and below is how to use a get from a IPhone application. 
 
 **Example 1**: 
 
