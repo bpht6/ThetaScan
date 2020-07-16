@@ -6,7 +6,19 @@ To run these examples you must have a Linux Server running a Theta Node on port 
 
 **Example 1**: 
 
+Using a post or get you can retreive a balance from a node using an external application.
 
+Swift 5 Example:
+```
+let url = URL(string: "https://example.com")!
+var components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
+
+components.queryItems = [
+    URLQueryItem(name: "address", value: "0xc15149236229bd13f0aec783a9cc8e8059fb28da"),
+]
+
+let query = components.url!.query
+```
 
 **Example 2**: 
 
