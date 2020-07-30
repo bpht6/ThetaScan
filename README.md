@@ -50,9 +50,9 @@ In crontab set the following processes.
 
 ```
 
-/1 * * * * php /var/thetascan/main_net_process_blocks.php
-/1 * * * * php /var/thetascan/main_net_process_guardian.php
-/10 * * * * php /var/thetascan/get_cmc_prices.php
+/1 * * * * php /var/thetascan/process_blocks.php
+/1 * * * * php /var/thetascan/process_guardian.php
+/10 * * * * php /var/thetascan/cmc_prices.php
 
 ```
 
