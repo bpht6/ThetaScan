@@ -14,4 +14,4 @@ A PHP block explorer for the Theta Blockchain.
 * Added separation to all Type 2 transaction based on output address. (each output is stored as a separate transaction in the database for quick searches.)
 * Added JSON printout for any un-mapped transaction.
 * Added loading screens while it looks up the transaction information for slower web servers.
-* Integrated CMC prices into the website prices update ever 10 minutes.
+* Integrated CMC prices into the website prices that update ever 10 minutes.
