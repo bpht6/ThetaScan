@@ -54,4 +54,13 @@ components.queryItems = [
 
 let query = components.url!.query
 ```
+**Example 4**: 
+
+Uses Javascript to fetch a balance request from the node or Theta's API.  For this to work on a localhost you must have external request unblocked.
+
+**Example 5**: 
+
+Uses Javascript to fetch a hash request from the node or Theta's API.  For this to work on a localhost you must have external request unblocked.
+
+
 
