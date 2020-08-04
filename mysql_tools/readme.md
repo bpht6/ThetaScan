@@ -9,3 +9,7 @@ During coding version 0.33.01 posted to the database from block 0 and double pos
 **Setup**
 
 You will need to include a password in you config.ini file
+
+```
+utilpass = yourpassword
+```
