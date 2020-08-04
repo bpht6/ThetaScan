@@ -1,6 +1,6 @@
 # ThetaScan.io
 
-Thetascan.io's CLI interface which is a client side Javascript application that interacts direclty with Theta Explorer API and does not use a local node.  It can be ran direclty from your desktop.
+Thetascan.io's CLI interface which is a client side JavaScript page that interacts directly with Theta Explorer API and does not use a local node. It can be ran directly from your desktop.
 
 
 **Commands**: 
