@@ -13,7 +13,7 @@ Thetascan.io's CLI interface which is a client side JavaScript page that interac
 * hash [transaction hash] - Return a type 2 transaction hash details.
 * help - The menu you are reading right now.
 * lastblock - Returns the last 6 blocks that are finalized on the Theta Network.
-* lasttransaction - Returns the last 6 transactions that are finalized.
+* lasttransaction - Returns the last 10 transactions that are finalized.
 * thetastaked - Returns the total amount of theta staked.
 * thetasupply - Returns the total supply of theta.
 * thetatodamoon - Displays a rocket ship names theta going to da moon.
