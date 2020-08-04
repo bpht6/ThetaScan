@@ -1,0 +1,544 @@
+<!DOCTYPE html> 
+
+<!-- MIT License
+
+Copyright (c) 2020 Jeremiah
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE. -->
+
+<html>
+<head>
+<title>ThetaScan.io - CLI Interface</title>
+<style>
+
+a.a {
+
+        font-family: Georgia, Times, Times New Roman, serif;
+        font-size: 2.1em;
+        color:#005eff;
+        float: left;
+        display: block;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+}
+
+a.b {
+
+        font-family: Georgia, Times, Times New Roman, serif;
+}
+
+body {
+        background-color: #ebebeb;
+        font-family: Gill Sans, Gill Sans MT, Calibri, sans-serif; 
+}
+
+div.a {
+
+        background-color: #ffffff;
+        width: 600px;
+        display: inline-block;
+}
+
+div.b {
+        float: left;  
+        font-size: 20px;
+        display: block;
+        padding: 10px 5px;
+}
+
+div.d {
+        background-color: #ffffff;
+        width: 1200px;
+        display: inline-block;
+}
+
+.menu a.b {
+
+        float: left;
+        display: block;
+        color: black;
+        text-align: center;
+        padding: 26px 16px;
+        text-decoration: none;
+        font-size: 20px;
+
+}
+
+a:link {
+  	text-decoration: none;
+  	color: black;
+}
+
+a:visited {
+  	text-decoration: none;
+  	color: black;
+}
+
+a:hover {
+  	text-decoration: none;
+  	color: black;
+}
+
+a:active {
+  	text-decoration: none;
+  	color: black;
+}
+
+.menu a.c {
+        float: left;
+        display: block;
+
+}
+
+.menu {
+        overflow: hidden;
+        background-color: #ebebeb;
+        width: 1200px;
+}
+
+.menu .search{
+        float: right;
+}
+
+.menu input[type=text] {
+        padding: 6px;
+        margin-top: 20px;
+        font-size: 17px;
+        border: none;
+}
+
+.menu .search button {
+        float: right;
+        padding: 6px 10px;
+        margin-top: 20px;
+        margin-right: 16px;
+        background-color: #005eff;
+        color: #ffffff;
+        font-size: 17px;
+        border: none;
+        cursor: pointer;
+}
+
+select{
+ float: right;
+        padding: 6px 10px;
+        margin-top: 20px;
+        margin-right: 0px;
+        background-color: #005eff;
+        color: #ffffff;
+        font-size: 17px;
+        border: none;
+}
+div.scroll { 
+	margin:4px, 4px; 
+	padding:4px; 
+	background-color: black; 
+	color: #26d108;
+	width: 1000px; 
+	height: 600px; 
+	overflow-x: hidden; 
+	overflow-y: visible;
+	line-height: 14px;
+	display: flex;
+	flex-direction: column-reverse;
+} 
+input.a {
+        background-color: black; 
+	color: #26d108;
+	border: none;
+	width: 900px; 
+	line-height: 17px;
+	font-size: 12px;
+	outline-width: 0;
+	outline: none;
+}
+a {
+ 	float:left;
+}
+
+</style>
+</head>
+<body onLoad="document.getElementById('com').focus();"> 
+
+
+
+<center>
+<div class="menu">
+  	<a class="c"> <img src="/theta.jpg"> </a>
+  	<a class="a" href="/" style="color:#005eff;"> ThetaScan.io</a>
+  	<a class="b" href="/blocks.php">Blocks</a>
+  	<a class="b" href="/staking.php">Staking Addresses</a>
+  	<div class="search">
+          	<form action="/address.php">
+                  	<input type="text" placeholder="Enter Address / Transaction Hash" name="address" size="35">
+                  	<button type="submit">Search</button>
+          	</form>
+  	</div>
+  	<div>
+     		<form action="/network.php">
+  		<select name = "network"onchange="this.form.submit()">
+  			<option value="main_net">Main Net</option>
+  			<option value="test_net">Test Net</option>
+		</select>
+     	</form>
+  	</div>
+</div>
+<br>
+
+<center>
+<h1>Theta Network node CLI web interface </h1>
+<div style ="width:1200px"; >
+<div style ="width:190px; float:left;">
+<b> Commands</b><br><br>
+<a> address [address] </a><br>
+<a> backgroundcolor [name] </a><br>
+<a> block [number] </a><br>
+<a> color [name] </a><br>
+<a> exit </a><br>
+<a> hash [transaction hash] </a><br>
+<a> help </a> <br> 
+<a> lastblock </a><br>
+<a> lasttransaction </a><br>
+<a> thetastaked </a> <br>
+<a> thetasupply </a> <br>
+<a> thetatodamoon </a><br>
+<a> tfuelsupply </a> <br>
+<a> topaddress </a><br>
+<a> staked [address] </a> <br>
+</div>
+<div id="cli" class="scroll" onclick="changefocus()" ><br>
+		<div> &nbsp; </div><br>
+		<br><div id="1"><a> Theta $ &nbsp;</a><input type="text" id="com" style = "float:left;" class="a" ></div><br>
+		<div> &nbsp; </div><br>
+        	<br><div id="0"><a>Welcome To The Theta Node Web Based CLI Interface v1.00.00 by ThetaScan.io<br></a></div><br><br><br>
+</div>
+</div>
+<br><br><br>
+<div style="width:1200px;">
+	<div style="float:right;"><a href="/contact/">Report a Problem</a></div>
+	<div style="float:left;"><a href="/broadcast_txn/"> Broadcast TXN</a></div>
+</div><br>
+<div style="width:1200px;">
+	<div style="float:right;"><a href="/examples/"> Github Examples</a></div>
+	<div style="float:left;"><a href="/cli/"> CLI Node Web Interface</a></div>
+</div>
+<br><br>
+</center> 
+</body> 
+</html>
+<script>
+function changefocus() { 
+
+            document.getElementById("com").focus(); 
+
+        } 
+document.getElementById("com").onkeypress = function(event){
+	if (event.keyCode == 13 || event.which == 13){
+		var com = document.getElementById("com").value;
+		var next = "<br><br><a> Theta $ &nbsp;".concat(com);
+		var nextline = next.concat("<br>");
+		document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat(nextline);
+
+		if (com == "help") {
+
+  			document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat("<br><br><a><b>Commands: </b></a><br><br>"+
+  			"<div style='width:200px; float:left;'><a> address [address] </a></div><div style='float:left;'><a>- Returns the balance of an address</a></div><br>"+
+			"<div style='width:200px; float:left;'><a> backgroundcolor [name] </a></div><div style='float:left;'><a>- Changes the background color of the window</a></div><br>"+
+			"<div style='width:200px; float:left;'><a> block [number] </a></div><div style='float:left;'><a>- Returns details from a block number</a></div><br>"+
+			"<div style='width:200px; float:left;'><a> color [name]</a></div><div style='float:left;'><a>- Changes the text color of the window</a></div><br>"+
+  			"<div style='width:200px; float:left;'><a> exit </a></div><div style='float:left;'><a>- Closes the CLI interface</a></div><br>"+
+			"<div style='width:200px; float:left;'><a> hash [transaction hash] </a></div><div style='float:left;'><a>- Return a type 2 transaction hash details</a></div><br>"+
+			"<div style='width:200px; float:left;'><a> help </a></div><div style='float:left;'><a>- The menu you are reading right now</a></div><br>"+
+			"<div style='width:200px; float:left;'><a> lastblock </a></div><div style='float:left;'><a>- Returns the last 6 blocks that are finalized on the Theta Network</a></div><br>"+
+			"<div style='width:200px; float:left;'><a> lasttransaction </a></div><div style='float:left;'><a>- Returns the last 6 transactions that are finalized</a></div><br>"+
+			"<div style='width:200px; float:left;'><a> thetastaked </a></div><div style='float:left;'><a>- Returns the total amount of theta staked</a></div><br>"+
+			"<div style='width:200px; float:left;'><a> thetasupply </a></div><div style='float:left;'><a>- Returns the total supply of theta</a></div><br>"+
+			"<div style='width:200px; float:left;'><a> thetatodamoon </a></div><div style='float:left;'><a>- Displays a rocket ship names theta going to da moon</a></div><br>"+
+  			"<div style='width:200px; float:left;'><a> tfuelsupply </a></div><div style='float:left;'><a>- Returns the total supply of TFuel</a></div><br>"+
+			"<div style='width:200px; float:left;'><a> topaddress </a></div><div style='float:left;'><a>- Returns the top 6 THeta wallet address and their balances</a></div><br>"+
+			"<div style='width:200px; float:left;'><a> staked [address]</a></div><div style='float:left;'><a>- Returns the total amount of Theta staked</a></div><br>");
+
+		} 
+		if (com == "exit") {
+  			document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat("<br><br><a> Good Bye </a><br><br>");
+  			document.getElementById("com").value = ""; 
+  			document.getElementById("1").innerHTML = "&nbsp;";
+  		} 
+		if (com.substring(0, 5) == "color") {
+  			document.getElementById("cli").style.color = com.substring(6);
+  			document.getElementById("com").style.color = com.substring(6);
+		} 
+		if (com.substring(0, 15) == "backgroundcolor") {
+  			document.getElementById("cli").style.backgroundColor = com.substring(16);
+  			document.getElementById("com").style.backgroundColor = com.substring(16);
+		} 
+		if (com.substring(0, 5) == "block") {
+			var address  = com.substring(6);
+  			var api = "https://explorer.thetatoken.org:9000/api/block/";
+			var url = api.concat(address);
+  			fetch(url)
+  			.then( res => res.json() )
+  			.then(  function(data) { 
+				var block = (JSON.stringify(data.body.height)).replace(/\"/gi,'');
+  				var hash = (JSON.stringify(data.body.hash)).replace(/\"/gi,'');
+  				var txs = (JSON.stringify(data.body.num_txs)).replace(/\"/gi,'');
+  				var timestamp = (JSON.stringify(data.body.timestamp)).replace(/\"/gi,'');
+  				var reply = "<br><br><a><b> ------------------------------ Block ------------------------------ </b></a><br><br><a> Block: ".concat(block,"</a><br><br><a> Timestamp: ",timestamp,"</a><br><br><a> Block Hash: ",hash,"</a><br><br><a> Number of Transactions: ",txs,"</a><br><br>");
+				document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat(reply);
+  				})
+  			
+  		}
+  		if (com == "price") {
+  			var url = "https://www.thetascan.io/api/price";
+			fetch(url)
+  			.then( res => res.json() )
+  			.then(  function(data) { 
+  				document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat(data);
+  				})
+  			
+  		}
+  		if (com.substring(0, 4) == "hash") {
+			var address  = com.substring(5);
+  			var api = "https://explorer.thetatoken.org:9000/api/transaction/";
+			var url = api.concat(address);
+  			fetch(url)
+  			.then( res => res.json() )
+  			.then(  function(data) { 
+				var block = (JSON.stringify(data.body.block_height)).replace(/\"/gi,'');
+  				var hash = (JSON.stringify(data.body.hash)).replace(/\"/gi,'');
+  				var timestamp = (JSON.stringify(data.body.timestamp)).replace(/\"/gi,'');
+  				var fee = (JSON.stringify(data.body.data.fee.tfuelwei)).replace(/\"/gi,'');
+  				var from = (JSON.stringify(data.body.data.inputs[0].address)).replace(/\"/gi,'');
+  				var to = (JSON.stringify(data.body.data.outputs[0].address)).replace(/\"/gi,'');
+  				var theta = (JSON.stringify(data.body.data.outputs[0].coins.thetawei)).replace(/\"/gi,'');
+  				var tfuel = (JSON.stringify(data.body.data.outputs[0].coins.tfuelwei)).replace(/\"/gi,'');
+  				
+  				var reply = "<br><br><a><b> ------------------------------ Hash ------------------------------ </b></a><br><br><a> Block: ".concat(block,"</a><br><br><a> Timestamp: ",timestamp,"</a><br><br><a> Block Hash: ",hash,"</a><br><br>");
+				var reply = reply.concat("<a> TFuel Fee: ",fee/1000000000000000000,"</a><br><br><a> Sending Address: ",from,"</a><br><br>");
+				var reply = reply.concat("<a> Recieving Address: ",to,"</a><br><br><a> theta: ",theta/1000000000000000000,"</a><br><br>");
+				var reply = reply.concat("<a> Tfuel: ",tfuel/1000000000000000000,"</a><br><br>");
+				document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat(reply);
+			})
+  			
+  		} 
+		if (com == "lasttransaction") {
+  			var url2 = "https://explorer.thetatoken.org:9000/api/transactions/range?pageNumber=1&limit=10";
+			fetch(url2)
+  			.then( res => res.json() )
+  			.then(  function(data) { 
+				var hash1 = (JSON.stringify(data.body[0].hash)).replace(/\"/gi,'');
+  				var block1 = (JSON.stringify(data.body[0].block_height)).replace(/\"/gi,'');
+  				var hash2 = (JSON.stringify(data.body[1].hash)).replace(/\"/gi,'');
+  				var block2 = (JSON.stringify(data.body[1].block_height)).replace(/\"/gi,'');
+  				var hash3 = (JSON.stringify(data.body[2].hash)).replace(/\"/gi,'');
+  				var block3 = (JSON.stringify(data.body[2].block_height)).replace(/\"/gi,'');
+  				var hash4 = (JSON.stringify(data.body[3].hash)).replace(/\"/gi,'');
+  				var block4 = (JSON.stringify(data.body[3].block_height)).replace(/\"/gi,'');
+  				var hash5 = (JSON.stringify(data.body[4].hash)).replace(/\"/gi,'');
+  				var block5 = (JSON.stringify(data.body[4].block_height)).replace(/\"/gi,'');
+  				var hash6 = (JSON.stringify(data.body[5].hash)).replace(/\"/gi,'');
+  				var block6 = (JSON.stringify(data.body[5].block_height)).replace(/\"/gi,'');
+  				var hash7 = (JSON.stringify(data.body[6].hash)).replace(/\"/gi,'');
+  				var block7 = (JSON.stringify(data.body[6].block_height)).replace(/\"/gi,'');
+  				var hash8 = (JSON.stringify(data.body[7].hash)).replace(/\"/gi,'');
+  				var block8 = (JSON.stringify(data.body[7].block_height)).replace(/\"/gi,'');
+  				var hash9 = (JSON.stringify(data.body[8].hash)).replace(/\"/gi,'');
+  				var block9 = (JSON.stringify(data.body[8].block_height)).replace(/\"/gi,'');
+  				var hash10 = (JSON.stringify(data.body[9].hash)).replace(/\"/gi,'');
+  				var block10 = (JSON.stringify(data.body[9].block_height)).replace(/\"/gi,'');
+  				var reply = "<br><br><a><b> ------------------------ Last 10 Transactions ------------------------ </b></a><br><br><a> Block: ".concat(block1,"</a><br><a> Hash: ",hash1,"</a><br>","</a><br><br>");
+  				var reply = reply.concat("<a> Block: ",block2,"</a><br><a> Hash: ",hash2,"</a><br><br>");
+  				var reply = reply.concat("<a> Block: ",block3,"</a><br><a> Hash: ",hash3,"</a><br><br>");
+  				var reply = reply.concat("<a> Block: ",block4,"</a><br><a> Hash: ",hash4,"</a><br><br>");
+  				var reply = reply.concat("<a> Block: ",block5,"</a><br><a> Hash: ",hash5,"</a><br><br>");
+  				var reply = reply.concat("<a> Block: ",block6,"</a><br><a> Hash: ",hash6,"</a><br><br>");
+  				var reply = reply.concat("<a> Block: ",block7,"</a><br><a> Hash: ",hash7,"</a><br><br>");
+  				var reply = reply.concat("<a> Block: ",block8,"</a><br><a> Hash: ",hash8,"</a><br><br>");
+  				var reply = reply.concat("<a> Block: ",block9,"</a><br><a> Hash: ",hash9,"</a><br><br>");
+  				var reply = reply.concat("<a> Block: ",block10,"</a><br><a> Hash: ",hash10,"</a><br><br>");
+  				document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat(reply);
+  				})
+  			
+  		} 
+		if (com == "lastblock") {
+  			var url2 = "https://explorer.thetatoken.org:9000/api/blocks/top_blocks?pageNumber=1&limit=6";
+			fetch(url2)
+  			.then( res => res.json() )
+  			.then(  function(data) { 
+				var block6 = (JSON.stringify(data.body[0].height)).replace(/\"/gi,'');
+  				var hash6 = (JSON.stringify(data.body[0].hash)).replace(/\"/gi,'');
+  				var txs6 = (JSON.stringify(data.body[0].num_txs)).replace(/\"/gi,'');
+  				var block5 = (JSON.stringify(data.body[1].height)).replace(/\"/gi,'');
+  				var hash5 = (JSON.stringify(data.body[1].hash)).replace(/\"/gi,'');
+  				var txs5 = (JSON.stringify(data.body[1].num_txs)).replace(/\"/gi,'');
+  				var block4 = (JSON.stringify(data.body[2].height)).replace(/\"/gi,'');
+  				var hash4 = (JSON.stringify(data.body[2].hash)).replace(/\"/gi,'');
+  				var txs4 = (JSON.stringify(data.body[2].num_txs)).replace(/\"/gi,'');
+  				var block3 = (JSON.stringify(data.body[3].height)).replace(/\"/gi,'');
+  				var hash3 = (JSON.stringify(data.body[3].hash)).replace(/\"/gi,'');
+  				var txs3 = (JSON.stringify(data.body[3].num_txs)).replace(/\"/gi,'');
+  				var block2 = (JSON.stringify(data.body[4].height)).replace(/\"/gi,'');
+  				var hash2 = (JSON.stringify(data.body[4].hash)).replace(/\"/gi,'');
+  				var txs2 = (JSON.stringify(data.body[4].num_txs)).replace(/\"/gi,'');
+				var block1 = (JSON.stringify(data.body[5].height)).replace(/\"/gi,'');
+  				var hash1 = (JSON.stringify(data.body[5].hash)).replace(/\"/gi,'');
+  				var txs1 = (JSON.stringify(data.body[5].num_txs)).replace(/\"/gi,'');
+  				var reply = "<br><br><a><b> ---------------------------- Last 6 Blocks ---------------------------- </b></a><br><br><a> Block: ".concat(block1,"</a><br><a> Block Hash: ",hash1,"</a><br>","</a><a> Number of Transactions: ",txs1,"</a><br><br>");
+  				var reply = reply.concat("<a> Block: ",block2,"</a><br><a> Hash: ",hash2,"</a><br>","</a><a> Number of Transactions: ",txs2,"</a><br><br>");
+  				var reply = reply.concat("<a> Block: ",block3,"</a><br><a> Hash: ",hash3,"</a><br>","</a><a> Number of Transactions: ",txs3,"</a><br><br>");
+  				var reply = reply.concat("<a> Block: ",block4,"</a><br><a> Hash: ",hash4,"</a><br>","</a><a> Number of Transactions: ",txs4,"</a><br><br>");
+  				var reply = reply.concat("<a> Block: ",block5,"</a><br><a> Hash: ",hash5,"</a><br>","</a><a> Number of Transactions: ",txs5,"</a><br><br>");
+  				var reply = reply.concat("<a> Block: ",block6,"</a><br><a> Hash: ",hash6,"</a><br>","</a><a> Number of Transactions: ",txs6,"</a><br><br>");
+  				document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat(reply);
+
+  				})
+  			
+  		} 
+		if (com == "topaddress") {
+  			var url2 = "https://explorer.thetatoken.org:9000/api/account/top/theta/6";
+			fetch(url2)
+  			.then( res => res.json() )
+  			.then(  function(data) { 
+  			 	var add1 = (JSON.stringify(data.body[0].address)).replace(/\"/gi,'');
+  				var add1t = (JSON.stringify(data.body[0].balance.thetawei)).replace(/\"/gi,'');
+  				var add1tf = (JSON.stringify(data.body[0].balance.tfuelwei)).replace(/\"/gi,'');
+  				var add2 = (JSON.stringify(data.body[1].address)).replace(/\"/gi,'');
+  				var add2t = (JSON.stringify(data.body[1].balance.thetawei)).replace(/\"/gi,'');
+  				var add2tf = (JSON.stringify(data.body[1].balance.tfuelwei)).replace(/\"/gi,'');
+  				var add3 = (JSON.stringify(data.body[2].address)).replace(/\"/gi,'');
+  				var add3t = (JSON.stringify(data.body[2].balance.thetawei)).replace(/\"/gi,'');
+  				var add3tf = (JSON.stringify(data.body[2].balance.tfuelwei)).replace(/\"/gi,'');
+  				var add4 = (JSON.stringify(data.body[3].address)).replace(/\"/gi,'');
+  				var add4t = (JSON.stringify(data.body[3].balance.thetawei)).replace(/\"/gi,'');
+  				var add4tf = (JSON.stringify(data.body[3].balance.tfuelwei)).replace(/\"/gi,'');
+  				var add5 = (JSON.stringify(data.body[4].address)).replace(/\"/gi,'');
+  				var add5t = (JSON.stringify(data.body[4].balance.thetawei)).replace(/\"/gi,'');
+  				var add5tf = (JSON.stringify(data.body[4].balance.tfuelwei)).replace(/\"/gi,'');
+  				var add6 = (JSON.stringify(data.body[5].address)).replace(/\"/gi,'');
+  				var add6t = (JSON.stringify(data.body[5].balance.thetawei)).replace(/\"/gi,'');
+  				var add6tf = (JSON.stringify(data.body[5].balance.tfuelwei)).replace(/\"/gi,'');
+  				var reply = "<br><br><a><b> ---------------------------- Top 6 Addresses ---------------------------- </b></a><br><br><a> #1 Address: ".concat(add1,"</a><br><a> Theta Balance: ",add1t/1000000000000000000,"</a><br>","</a><a> TFuel Balance: ",add1tf/1000000000000000000,"</a><br><br>");
+  				var reply = reply.concat("<a> #2 Address: ",add2,"</a><br><a> Theta Balance: ",add2t/1000000000000000000,"</a><br>","</a><a> TFuel Balance: ",add2tf/1000000000000000000,"</a><br><br>");
+  				var reply = reply.concat("<a> #3 Address: ",add3,"</a><br><a> Theta Balance: ",add3t/1000000000000000000,"</a><br>","</a><a> TFuel Balance: ",add3tf/1000000000000000000,"</a><br><br>");
+  				var reply = reply.concat("<a> #4 Address: ",add4,"</a><br><a> Theta Balance: ",add4t/1000000000000000000,"</a><br>","</a><a> TFuel Balance: ",add4tf/1000000000000000000,"</a><br><br>");
+  				var reply = reply.concat("<a> #5 Address: ",add5,"</a><br><a> Theta Balance: ",add5t/1000000000000000000,"</a><br>","</a><a> TFuel Balance: ",add5tf/1000000000000000000,"</a><br><br>");
+  				var reply = reply.concat("<a> #6 Address: ",add6,"</a><br><a> Theta Balance: ",add6t/1000000000000000000,"</a><br>","</a><a> TFuel Balance: ",add6tf/1000000000000000000,"</a><br><br>");
+  				document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat(reply);
+  				})
+  			
+  		} 
+  		if (com.substring(0, 6) == "staked") {
+  			var address  = com.substring(7);
+  			var api = "https://explorer.thetatoken.org:9000/api/stake/";
+			var url = api.concat(address);
+			fetch(url)
+  			.then( res => res.json() )
+  			.then(  function(data) { 
+  				var node = (JSON.stringify(data.body.sourceRecords[0].holder)).replace(/\"/gi,'');
+  				var address = (JSON.stringify(data.body.sourceRecords[0].source)).replace(/\"/gi,'');
+  				var theta = (JSON.stringify(data.body.sourceRecords[0].amount)).replace(/\"/gi,'');
+  				var reply = "<br><br><a><b> ------------------------------- Node Found ------------------------------- </b></a><br><br><a> Address: ".concat(address,"</a><br><br><a> Node Address: ",node,"</a><br><br><a> Theta Balance: ",theta/1000000000000000000,"</a><br>");
+  				document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat(reply);
+  				})
+  			
+  		} 
+		if (com.substring(0, 7) == "address") {
+  			var address  = com.substring(8);
+  			var api = "https://explorer.thetatoken.org:9000/api/account/";
+			var url = api.concat(address);
+			fetch(url)
+  			.then( res => res.json() )
+  			.then(  function(data) { 
+  				var theta = (JSON.stringify(data.body.balance.thetawei)).replace(/\"/gi,'');
+  				var tfuel = (JSON.stringify(data.body.balance.tfuelwei)).replace(/\"/gi,'');
+  				var sequence = (JSON.stringify(data.body.sequence)).replace(/\"/gi,'');
+  				var reply = "<br><br><a><b> ------------------------------ Balance Found ------------------------------ </b></a><br><br><a> Address: ".concat(com.substring(8),"</a><br><br><a> Theta Balance: ",theta/1000000000000000000,"</a><br>","</a><br><a> TFuel Balance: ",tfuel/1000000000000000000,"</a><br><br><a> Sequence: ",sequence,"</a></b><br>");
+  				document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat(reply);
+  				})
+  			
+  		} 
+  		if (com.substring(0, 11) == "thetasupply") {
+  			var url2 = "https://explorer.thetatoken.org:9000/api/supply/theta";
+			fetch(url2)
+  			.then( res => res.json() )
+  			.then(  function(data) { 
+  				var total = (JSON.stringify(data.total_supply)).replace(/\"/gi,'');
+  				var circulation = (JSON.stringify(data.circulation_supply)).replace(/\"/gi,'');
+  				var reply = "<br><br><a><b> ------------------------------- Theta Supply ------------------------------- </b></a><br><br><a> Total Supply: ".concat(total,"</a><br>","</a><br><a> Circulation Supply: ",circulation,"</a><br>");
+  				document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat(reply);
+  				})
+  			
+  		} 
+  		  if (com.substring(0, 11) == "tfuelsupply") {
+  			var url2 = "https://explorer.thetatoken.org:9000/api/supply/tfuel";
+			fetch(url2)
+  			.then( res => res.json() )
+  			.then(  function(data) { 
+  				var circulation = (JSON.stringify(data.circulation_supply)).replace(/\"/gi,'');
+  				var reply = "<br><br><a><b> ------------------------------- TFuel Supply ------------------------------- </b></a><br><br><a> Circulation Supply: ".concat(circulation,"</a><br>");
+  				document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat(reply);
+  				})
+  			
+  		} 
+  		if (com == "thetastaked") {
+  			var url2 = "https://explorer.thetatoken.org:9000/api/stake/totalAmount";
+			fetch(url2)
+  			.then( res => res.json() )
+  			.then(  function(data) { 
+  				var total = (JSON.stringify(data.body.totalAmount)).replace(/\"/gi,'');
+  				var total = total / 1000000000000000000;
+  				var nodes = (JSON.stringify(data.body.totalNodes)).replace(/\"/gi,'');
+  				var reply = "<br><br><a><b> ---------------------------- Total Theta Staked ---------------------------- </b></a><br><br><a> Total Amount: ".concat(total,"</a><br>","</a><br><a> Total Nodes: ",nodes,"</a><br>");
+  				document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat(reply);
+  				})
+  			
+  		}
+  		if (com == "thetatodamoon") {
+  			document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat("<br><br><br><a><b>We have Lift off </b></a><br><br>"+
+  			"<a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;------------</a><br>"+
+  			"<a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--</a><br>"+
+  			"<a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--</a><br>"+
+  			"<a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--</a><br>"+
+  			"<a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;------------</a><br><br><br>"+
+  			"<a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a><br>"+
+  			"<a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a><br>"+
+  			"<a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&#92;</a><br>"+
+  			"<a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&#92;</a><br>"+
+  			"<a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#92;</a><br>"+
+  			"<a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#92;</a><br>"+
+  			"<a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#92;</a><br>"+
+  			"<a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;THETA</a><br>"+
+  			"<a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;----------</a><br>"+
+  			"<a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a><br>"+
+  			"<a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a><br>"+
+  			"<a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a><br>"+
+  			"<a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a><br>"+
+  			"<a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a><br>"+
+  			"<a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;------------</a><br>"+
+  			"<a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a><br>"+
+  			"<a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#####</a><br>"+
+  			"<a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;####</a><br>"+
+  			"<a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;</a><br><br><a> Theta to Da Moon!!! </a><br><br><br>");
+		} 
+
+	document.getElementById("com").value = ""; 
+	}
+
+};
+</script>
