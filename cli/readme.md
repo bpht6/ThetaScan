@@ -2,7 +2,7 @@
 
 Thetascan.io's CLI interface which is a client side JavaScript coding that interacts directly with Theta Explorer API and does not use a local node. It can be ran directly from your desktop.
 
-This CLI is using https://explorer.thetatoken.org:9000/api/ to return the information.  It could be edited to return from a local host or another api with external access.
+This CLI is using https://explorer.thetatoken.org:9000/api/ to return the information.  It could be edited to return from a local host or another api with external access enabled.
 
 **Commands**: 
 
