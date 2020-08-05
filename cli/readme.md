@@ -13,7 +13,7 @@ This CLI is using https://explorer.thetatoken.org:9000/api/ to return the inform
 * color [name] - Changes the text color of the window.
 * date - Returns the current UTC date
 * exit - Closes the CLI interface.
-* export [type] [data] "-a" Account Balance "-h" Hash "-b" Block "-s" Acount Staking and [data] is hash, block, or address
+* export [type] [data] - Types "-a" Account Balance "-h" Hash "-b" Block "-s" Acount Staking - Data is hash, block, or address
 ```
 export -a 0xc15149236229bd13f0aec783a9cc8e8059fb28da
 ```
