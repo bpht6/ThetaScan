@@ -9,11 +9,11 @@ This CLI is using https://explorer.thetatoken.org:9000/api/ to return the inform
 * address [address] - Returns the balance of an address.
 * backgroundcolor [name] - Changes the background color of the window.
 * block [number] - Returns details from a block number.
+* clear - Clears the screen
 * color [name] - Changes the text color of the window.
 * date - Returns the current UTC date
 * exit - Closes the CLI interface.
 * export [type] [data] "-a" Account Balance "-h" Hash "-b" Block "-s" Acount Staking and [data] is hash, block, or address
-Example"
 ```
 export -a 0xc15149236229bd13f0aec783a9cc8e8059fb28da
 ```
@@ -25,5 +25,6 @@ export -a 0xc15149236229bd13f0aec783a9cc8e8059fb28da
 * thetasupply - Returns the total supply of theta.
 * thetatodamoon - Displays a rocket ship names theta going to da moon.
 * tfuelsupply - Returns the total supply of TFuel.
+* time - Returns the current UTC time and timestamp
 * topaddress - Returns the top 6 Theta wallet address and their balances.
 * staked [address] - Returns the total amount of Theta staked and the Node Address.
