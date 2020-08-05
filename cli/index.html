@@ -2,7 +2,7 @@
 
 <!-- MIT License
 
-Copyright (c) 2020 Jeremiah
+Copyright (c) 2020 ThetaScan.io
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -180,18 +180,18 @@ a {
 
 <center>
 <div class="menu">
-  	<a class="c"> <img src="http://www.thetascan.io/theta.jpg"> </a>
-  	<a class="a" href="http://www.thetascan.io/" style="color:#005eff;"> ThetaScan.io</a>
-  	<a class="b" href="http://www.thetascan.io/blocks.php">Blocks</a>
-  	<a class="b" href="http://www.thetascan.io/staking.php">Staking Addresses</a>
+  	<a class="c"> <img src="/theta.jpg"> </a>
+  	<a class="a" href="/" style="color:#005eff;"> ThetaScan.io</a>
+  	<a class="b" href="/blocks/">Blocks</a>
+  	<a class="b" href="/staking/">Staking Addresses</a>
   	<div class="search">
-          	<form action="http://www.thetascan.io/address.php">
+          	<form action="/address/">
                   	<input type="text" placeholder="Enter Address / Transaction Hash" name="address" size="35">
                   	<button type="submit">Search</button>
           	</form>
   	</div>
   	<div>
-     		<form action="http://www.thetascan.io/network.php">
+     		<form action="/network.php">
   		<select name = "network"onchange="this.form.submit()">
   			<option value="main_net">Main Net</option>
   			<option value="test_net">Test Net</option>
@@ -202,41 +202,43 @@ a {
 <br>
 
 <center>
-<h1>Theta Network Node CLI Web Interface </h1>
+<h1>Theta Network Node CLI Web Interface V1.00.03 </h1>
 <div style ="width:1200px"; >
 <div style ="width:190px; float:left;">
 <b> Commands</b><br><br>
 <a> address [address] </a><br>
 <a> backgroundcolor [name] </a><br>
 <a> block [number] </a><br>
+<a> clear </a><br>
 <a> color [name] </a><br>
+<a> date </a><br>
 <a> exit </a><br>
+<a> export [type] [data] </a><br>
 <a> hash [transaction hash] </a><br>
 <a> help </a> <br> 
 <a> lastblock </a><br>
 <a> lasttransaction </a><br>
+<a> tfuelsupply </a> <br>
 <a> thetastaked </a> <br>
 <a> thetasupply </a> <br>
 <a> thetatodamoon </a><br>
-<a> tfuelsupply </a> <br>
+<a> time </a> <br>
 <a> topaddress </a><br>
 <a> staked [address] </a> <br>
 </div>
 <div id="cli" class="scroll" onclick="changefocus()" ><br>
-		<div> &nbsp; </div><br>
-		<br><div id="1"><a> Theta $ &nbsp;</a><input type="text" id="com" style = "float:left;" class="a" ></div><br>
-		<div> &nbsp; </div><br>
-        	<br><div id="0"><a>Welcome To The Theta Node Web Based CLI Interface v1.00.00 by ThetaScan.io<br></a></div><br><br><br>
+		<div id="1"><a> Theta $ &nbsp;</a><input type="text" id="com" style = "float:left;" class="a" ></div>
+        	<br><div id="0"><a>Welcome To The Theta Node Web Based CLI Interface v1.00.03 by ThetaScan.io<br></a></div><br><br>
 </div>
 </div>
 <br><br><br>
 <div style="width:1200px;">
-	<div style="float:right;"><a href="http://www.thetascan.io/contact/">Report a Problem</a></div>
-	<div style="float:left;"><a href="http://www.thetascan.io/broadcast_txn/"> Broadcast TXN</a></div>
-</div><br>
+	<div style="float:right;"><a href="/contact/">Report a Problem</a></div>
+	<div style="float:left;"><a href="/broadcast_txn/"> Broadcast TXN</a></div>
+</div><br><br>
 <div style="width:1200px;">
-	<div style="float:right;"><a href="http://www.thetascan.io/examples/"> Github Examples</a></div>
-	<div style="float:left;"><a href="http://www.thetascan.io/cli/"> CLI Node Web Interface</a></div>
+	<div style="float:right;"><a href="/examples/"> Github Examples</a></div>
+	<div style="float:left;"><a href="/cli/"> CLI Node Web Interface</a></div>
 </div>
 <br><br>
 </center> 
@@ -261,25 +263,127 @@ document.getElementById("com").onkeypress = function(event){
   			"<div style='width:200px; float:left;'><a> address [address] </a></div><div style='float:left;'><a>- Returns the balance of an address</a></div><br>"+
 			"<div style='width:200px; float:left;'><a> backgroundcolor [name] </a></div><div style='float:left;'><a>- Changes the background color of the window</a></div><br>"+
 			"<div style='width:200px; float:left;'><a> block [number] </a></div><div style='float:left;'><a>- Returns details from a block number</a></div><br>"+
+			"<div style='width:200px; float:left;'><a> clear </a></div><div style='float:left;'><a>- Clears the screen</a></div><br>"+
 			"<div style='width:200px; float:left;'><a> color [name]</a></div><div style='float:left;'><a>- Changes the text color of the window</a></div><br>"+
+			"<div style='width:200px; float:left;'><a> date</a></div><div style='float:left;'><a>- Returns the current UTC date</a></div><br>"+
   			"<div style='width:200px; float:left;'><a> exit </a></div><div style='float:left;'><a>- Closes the CLI interface</a></div><br>"+
+			"<div style='width:200px; float:left;'><a> export </a></div><div style='float:left;'><a>- Type '-a' Account Balance '-h' Hash '-b' Block '-s' Acount Staking and [data] is hash, block, or address </a></div><br>"+
+			"<div style='width:200px; float:left;'><a> &nbsp; </a></div><div style='float:left;'><a>- Example export -a 0xc15149236229bd13f0aec783a9cc8e8059fb28da</a></div><br>"+
 			"<div style='width:200px; float:left;'><a> hash [transaction hash] </a></div><div style='float:left;'><a>- Return a type 2 transaction hash details</a></div><br>"+
 			"<div style='width:200px; float:left;'><a> help </a></div><div style='float:left;'><a>- The menu you are reading right now</a></div><br>"+
 			"<div style='width:200px; float:left;'><a> lastblock </a></div><div style='float:left;'><a>- Returns the last 6 blocks that are finalized on the Theta Network</a></div><br>"+
 			"<div style='width:200px; float:left;'><a> lasttransaction </a></div><div style='float:left;'><a>- Returns the last 10 transactions that are finalized</a></div><br>"+
+			"<div style='width:200px; float:left;'><a> tfuelsupply </a></div><div style='float:left;'><a>- Returns the total supply of TFuel</a></div><br>"+
 			"<div style='width:200px; float:left;'><a> thetastaked </a></div><div style='float:left;'><a>- Returns the total amount of theta staked</a></div><br>"+
 			"<div style='width:200px; float:left;'><a> thetasupply </a></div><div style='float:left;'><a>- Returns the total supply of theta</a></div><br>"+
 			"<div style='width:200px; float:left;'><a> thetatodamoon </a></div><div style='float:left;'><a>- Displays a rocket ship names theta going to da moon</a></div><br>"+
-  			"<div style='width:200px; float:left;'><a> tfuelsupply </a></div><div style='float:left;'><a>- Returns the total supply of TFuel</a></div><br>"+
+  			"<div style='width:200px; float:left;'><a> time </a></div><div style='float:left;'><a>- Returns the current UTC time and timestamp</a></div><br>"+
 			"<div style='width:200px; float:left;'><a> topaddress </a></div><div style='float:left;'><a>- Returns the top 6 Theta wallet address and their balances</a></div><br>"+
-			"<div style='width:200px; float:left;'><a> staked [address]</a></div><div style='float:left;'><a>- Returns the total amount of Theta staked</a></div><br>");
+			"<div style='width:200px; float:left;'><a> staked [address]</a></div><div style='float:left;'><a>- Returns the total amount of Theta staked</a></div>");
 
-		} 
+		}
+		if (com.substring(0, 6) == "export") {
+			if (com.substring(7, 9) == "-a") {
+				var address  = com.substring(10);
+				var api = "https://explorer.thetatoken.org:9000/api/account/";
+				var url = api.concat(address);
+				fetch(url)
+				.then( res => res.json() )
+				.then(  function(data) { 
+					const download = document.createElement("a");
+					download.href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], {
+					type: "text/plain"
+					}));
+					download.setAttribute("download", com.substring(10).concat(".json"));
+					document.body.appendChild(download);
+					download.click();
+					document.body.removeChild(download);
+					var reply = "<br><br><a><b> -------------------- Account Balance Downloaded ------------------- </b></a><br><br><a> Address: ".concat(com.substring(10),"</a><br>");
+					document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat(reply);
+  				})
+			}
+			if (com.substring(7, 9) == "-h") {
+				var hash  = com.substring(10);
+				var api = "https://explorer.thetatoken.org:9000/api/transaction/";
+				var url = api.concat(hash);
+				fetch(url)
+				.then( res => res.json() )
+				.then(  function(data) { 
+					const download = document.createElement("a");
+					download.href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], {
+					type: "text/plain"
+					}));
+					download.setAttribute("download", com.substring(10).concat(".json"));
+					document.body.appendChild(download);
+					download.click();
+					document.body.removeChild(download);
+					var reply = "<br><br><a><b> --------------------- Hash Details Downloaded -------------------- </b></a><br><br><a> Hash: ".concat(com.substring(10),"</a><br>");
+					document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat(reply);
+  				})
+			}
+			if (com.substring(7, 9) == "-b") {
+				var block  = com.substring(10);
+				var api = "https://explorer.thetatoken.org:9000/api/block/";
+				var url = api.concat(block);
+				fetch(url)
+				.then( res => res.json() )
+				.then(  function(data) { 
+					const download = document.createElement("a");
+					download.href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], {
+					type: "text/plain"
+					}));
+					download.setAttribute("download", com.substring(10).concat(".json"));
+					document.body.appendChild(download);
+					download.click();
+					document.body.removeChild(download);
+					var reply = "<br><br><a><b> --------------------- Block Details Downloaded -------------------- </b></a><br><br><a> Block: ".concat(com.substring(10),"</a><br>");
+					document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat(reply);
+  				})
+			}
+			if (com.substring(7, 9) == "-s") {
+				var address  = com.substring(10);
+				var api = "https://explorer.thetatoken.org:9000/api/stake/";
+				var url = api.concat(address);
+				fetch(url)
+				.then( res => res.json() )
+				.then(  function(data) { 
+					const download = document.createElement("a");
+					download.href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], {
+					type: "text/plain"
+					}));
+					download.setAttribute("download", com.substring(10).concat(".json"));
+					document.body.appendChild(download);
+					download.click();
+					document.body.removeChild(download);
+					var reply = "<br><br><a><b> ---------------- Address Staking Details Downloaded --------------- </b></a><br><br><a> Address: ".concat(com.substring(10),"</a><br>");
+					document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat(reply);
+  				})
+			}
+		}
+
+		
 		if (com == "exit") {
-  			document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat("<br><br><a> Good Bye </a><br><br>");
+  			document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat("<br><br><a> Good Bye </a>");
   			document.getElementById("com").value = ""; 
   			document.getElementById("1").innerHTML = "&nbsp;";
   		} 
+		if (com == "clear") {
+  			document.getElementById("0").innerHTML = "";
+   		} 
+		if (com == "date") {
+			var c_date = new Date();
+			var month = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+  			document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat("<br><br><a>",month[c_date.getUTCMonth()]," ",c_date.getUTCDate()," ",c_date.getUTCFullYear(),"</a>");
+   		} 
+		if (com == "time") {
+			var c_date = new Date();
+			if (c_date.getUTCHours() < 9){ var hours = "0".concat(c_date.getUTCHours())} else {var hours = c_date.getUTCHours()};
+			if (c_date.getUTCSeconds() < 9){ var seconds = "0".concat(c_date.getUTCSeconds())} else {var seconds = c_date.getUTCSeconds()};
+			if (c_date.getUTCMinutes() < 9){ var minutes = "0".concat(c_date.getUTCMinutes())} else {var minutes = c_date.getUTCMinutes()};
+			var month = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+  			document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat("<br><br><a> Current UTC Time: ",hours,":",minutes,":",seconds,"</a>");
+			document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat("<br><br><a> Current Timestamp: ",(c_date.getTime()/1000).toFixed(0),"</a>");
+		}
 		if (com.substring(0, 5) == "color") {
   			document.getElementById("cli").style.color = com.substring(6);
   			document.getElementById("com").style.color = com.substring(6);
@@ -299,17 +403,8 @@ document.getElementById("com").onkeypress = function(event){
   				var hash = (JSON.stringify(data.body.hash)).replace(/\"/gi,'');
   				var txs = (JSON.stringify(data.body.num_txs)).replace(/\"/gi,'');
   				var timestamp = (JSON.stringify(data.body.timestamp)).replace(/\"/gi,'');
-  				var reply = "<br><br><a><b> ------------------------------ Block ------------------------------ </b></a><br><br><a> Block: ".concat(block,"</a><br><br><a> Timestamp: ",timestamp,"</a><br><br><a> Block Hash: ",hash,"</a><br><br><a> Number of Transactions: ",txs,"</a><br><br>");
+  				var reply = "<br><br><a><b> ------------------------------ Block ------------------------------ </b></a><br><br><a> Block: ".concat(block,"</a><br><br><a> Timestamp: ",timestamp,"</a><br><br><a> Block Hash: ",hash,"</a><br><br><a> Number of Transactions: ",txs,"</a><br>");
 				document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat(reply);
-  				})
-  			
-  		}
-  		if (com == "price") {
-  			var url = "https://www.thetascan.io/api/price";
-			fetch(url)
-  			.then( res => res.json() )
-  			.then(  function(data) { 
-  				document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat(data);
   				})
   			
   		}
@@ -332,7 +427,7 @@ document.getElementById("com").onkeypress = function(event){
   				var reply = "<br><br><a><b> ------------------------------ Hash ------------------------------ </b></a><br><br><a> Block: ".concat(block,"</a><br><br><a> Timestamp: ",timestamp,"</a><br><br><a> Block Hash: ",hash,"</a><br><br>");
 				var reply = reply.concat("<a> TFuel Fee: ",fee/1000000000000000000,"</a><br><br><a> Sending Address: ",from,"</a><br><br>");
 				var reply = reply.concat("<a> Recieving Address: ",to,"</a><br><br><a> theta: ",theta/1000000000000000000,"</a><br><br>");
-				var reply = reply.concat("<a> Tfuel: ",tfuel/1000000000000000000,"</a><br><br>");
+				var reply = reply.concat("<a> Tfuel: ",tfuel/1000000000000000000,"</a><br>");
 				document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat(reply);
 			})
   			
@@ -371,7 +466,7 @@ document.getElementById("com").onkeypress = function(event){
   				var reply = reply.concat("<a> Block: ",block7,"</a><br><a> Hash: ",hash7,"</a><br><br>");
   				var reply = reply.concat("<a> Block: ",block8,"</a><br><a> Hash: ",hash8,"</a><br><br>");
   				var reply = reply.concat("<a> Block: ",block9,"</a><br><a> Hash: ",hash9,"</a><br><br>");
-  				var reply = reply.concat("<a> Block: ",block10,"</a><br><a> Hash: ",hash10,"</a><br><br>");
+  				var reply = reply.concat("<a> Block: ",block10,"</a><br><a> Hash: ",hash10,"</a><br>");
   				document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat(reply);
   				})
   			
@@ -404,7 +499,7 @@ document.getElementById("com").onkeypress = function(event){
   				var reply = reply.concat("<a> Block: ",block3,"</a><br><a> Hash: ",hash3,"</a><br>","</a><a> Number of Transactions: ",txs3,"</a><br><br>");
   				var reply = reply.concat("<a> Block: ",block4,"</a><br><a> Hash: ",hash4,"</a><br>","</a><a> Number of Transactions: ",txs4,"</a><br><br>");
   				var reply = reply.concat("<a> Block: ",block5,"</a><br><a> Hash: ",hash5,"</a><br>","</a><a> Number of Transactions: ",txs5,"</a><br><br>");
-  				var reply = reply.concat("<a> Block: ",block6,"</a><br><a> Hash: ",hash6,"</a><br>","</a><a> Number of Transactions: ",txs6,"</a><br><br>");
+  				var reply = reply.concat("<a> Block: ",block6,"</a><br><a> Hash: ",hash6,"</a><br>","</a><a> Number of Transactions: ",txs6,"</a><br>");
   				document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat(reply);
 
   				})
@@ -438,7 +533,7 @@ document.getElementById("com").onkeypress = function(event){
   				var reply = reply.concat("<a> #3 Address: ",add3,"</a><br><a> Theta Balance: ",add3t/1000000000000000000,"</a><br>","</a><a> TFuel Balance: ",add3tf/1000000000000000000,"</a><br><br>");
   				var reply = reply.concat("<a> #4 Address: ",add4,"</a><br><a> Theta Balance: ",add4t/1000000000000000000,"</a><br>","</a><a> TFuel Balance: ",add4tf/1000000000000000000,"</a><br><br>");
   				var reply = reply.concat("<a> #5 Address: ",add5,"</a><br><a> Theta Balance: ",add5t/1000000000000000000,"</a><br>","</a><a> TFuel Balance: ",add5tf/1000000000000000000,"</a><br><br>");
-  				var reply = reply.concat("<a> #6 Address: ",add6,"</a><br><a> Theta Balance: ",add6t/1000000000000000000,"</a><br>","</a><a> TFuel Balance: ",add6tf/1000000000000000000,"</a><br><br>");
+  				var reply = reply.concat("<a> #6 Address: ",add6,"</a><br><a> Theta Balance: ",add6t/1000000000000000000,"</a><br>","</a><a> TFuel Balance: ",add6tf/1000000000000000000,"</a><br>");
   				document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat(reply);
   				})
   			
