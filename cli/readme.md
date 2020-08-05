@@ -10,7 +10,13 @@ This CLI is using https://explorer.thetatoken.org:9000/api/ to return the inform
 * backgroundcolor [name] - Changes the background color of the window.
 * block [number] - Returns details from a block number.
 * color [name] - Changes the text color of the window.
+* date - Returns the current UTC date
 * exit - Closes the CLI interface.
+* export [type] [data] "-a" Account Balance "-h" Hash "-b" Block "-s" Acount Staking and [data] is hash, block, or address
+Example"
+```
+export -a 0xc15149236229bd13f0aec783a9cc8e8059fb28da
+```
 * hash [transaction hash] - Return a type 2 transaction hash details.
 * help - The menu you are reading right now.
 * lastblock - Returns the last 6 blocks that are finalized on the Theta Network.
