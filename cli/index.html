@@ -514,7 +514,7 @@ document.getElementById("com").onkeypress = function(event){
   				var hash = (JSON.stringify(data.body.hash)).replace(/\"/gi,'');
   				var txs = (JSON.stringify(data.body.num_txs)).replace(/\"/gi,'');
   				var timestamp = (JSON.stringify(data.body.timestamp)).replace(/\"/gi,'');
-  				var reply = "<br><br><a><b> ------------------------------ Block ------------------------------ </b></a><br><br><a> Block: ".concat(block,"</a><br><br><a> Timestamp: ",timestamp,"</a><br><br><a> Block Hash: ",hash,"</a><br><br><a> Number of Transactions: ",txs,"</a><br>");
+  				var reply = "<br><br><a><b> -------------------------------- Block -------------------------------- </b></a><br><br><a> Block: ".concat(block,"</a><br><br><a> Timestamp: ",timestamp,"</a><br><br><a> Block Hash: ",hash,"</a><br><br><a> Number of Transactions: ",txs,"</a><br>");
 				document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat(reply);
   				})
   			
@@ -568,7 +568,7 @@ document.getElementById("com").onkeypress = function(event){
   				var block9 = (JSON.stringify(data.body[8].block_height)).replace(/\"/gi,'');
   				var hash10 = (JSON.stringify(data.body[9].hash)).replace(/\"/gi,'');
   				var block10 = (JSON.stringify(data.body[9].block_height)).replace(/\"/gi,'');
-  				var reply = "<br><br><a><b> ------------------------ Last 10 Transactions ------------------------ </b></a><br><br><a> Block: ".concat(block1,"</a><br><a> Hash: ",hash1,"</a><br>","</a><br><br>");
+  				var reply = "<br><br><a><b> ---------------------- Last 10 Transactions ---------------------- </b></a><br><br><a> Block: ".concat(block1,"</a><br><a> Hash: ",hash1,"</a><br>","</a><br><br>");
   				var reply = reply.concat("<a> Block: ",block2,"</a><br><a> Hash: ",hash2,"</a><br><br>");
   				var reply = reply.concat("<a> Block: ",block3,"</a><br><a> Hash: ",hash3,"</a><br><br>");
   				var reply = reply.concat("<a> Block: ",block4,"</a><br><a> Hash: ",hash4,"</a><br><br>");
@@ -605,7 +605,7 @@ document.getElementById("com").onkeypress = function(event){
 				var block1 = (JSON.stringify(data.body[5].height)).replace(/\"/gi,'');
   				var hash1 = (JSON.stringify(data.body[5].hash)).replace(/\"/gi,'');
   				var txs1 = (JSON.stringify(data.body[5].num_txs)).replace(/\"/gi,'');
-  				var reply = "<br><br><a><b> ---------------------------- Last 6 Blocks ---------------------------- </b></a><br><br><a> Block: ".concat(block1,"</a><br><a> Block Hash: ",hash1,"</a><br>","</a><a> Number of Transactions: ",txs1,"</a><br><br>");
+  				var reply = "<br><br><a><b> -------------------------- Last 6 Blocks -------------------------- </b></a><br><br><a> Block: ".concat(block1,"</a><br><a> Block Hash: ",hash1,"</a><br>","</a><a> Number of Transactions: ",txs1,"</a><br><br>");
   				var reply = reply.concat("<a> Block: ",block2,"</a><br><a> Hash: ",hash2,"</a><br>","</a><a> Number of Transactions: ",txs2,"</a><br><br>");
   				var reply = reply.concat("<a> Block: ",block3,"</a><br><a> Hash: ",hash3,"</a><br>","</a><a> Number of Transactions: ",txs3,"</a><br><br>");
   				var reply = reply.concat("<a> Block: ",block4,"</a><br><a> Hash: ",hash4,"</a><br>","</a><a> Number of Transactions: ",txs4,"</a><br><br>");
@@ -639,7 +639,7 @@ document.getElementById("com").onkeypress = function(event){
   				var add6 = (JSON.stringify(data.body[5].address)).replace(/\"/gi,'');
   				var add6t = (JSON.stringify(data.body[5].balance.thetawei)).replace(/\"/gi,'');
   				var add6tf = (JSON.stringify(data.body[5].balance.tfuelwei)).replace(/\"/gi,'');
-  				var reply = "<br><br><a><b> ---------------------------- Top 6 Addresses ---------------------------- </b></a><br><br><a> #1 Address: ".concat(add1,"</a><br><a> Theta Balance: ",add1t/1000000000000000000,"</a><br>","</a><a> TFuel Balance: ",add1tf/1000000000000000000,"</a><br><br>");
+  				var reply = "<br><br><a><b> -----------------------_- Top 6 Addresses ------------------------ </b></a><br><br><a> #1 Address: ".concat(add1,"</a><br><a> Theta Balance: ",add1t/1000000000000000000,"</a><br>","</a><a> TFuel Balance: ",add1tf/1000000000000000000,"</a><br><br>");
   				var reply = reply.concat("<a> #2 Address: ",add2,"</a><br><a> Theta Balance: ",add2t/1000000000000000000,"</a><br>","</a><a> TFuel Balance: ",add2tf/1000000000000000000,"</a><br><br>");
   				var reply = reply.concat("<a> #3 Address: ",add3,"</a><br><a> Theta Balance: ",add3t/1000000000000000000,"</a><br>","</a><a> TFuel Balance: ",add3tf/1000000000000000000,"</a><br><br>");
   				var reply = reply.concat("<a> #4 Address: ",add4,"</a><br><a> Theta Balance: ",add4t/1000000000000000000,"</a><br>","</a><a> TFuel Balance: ",add4tf/1000000000000000000,"</a><br><br>");
@@ -659,7 +659,7 @@ document.getElementById("com").onkeypress = function(event){
   				var node = (JSON.stringify(data.body.sourceRecords[0].holder)).replace(/\"/gi,'');
   				var address = (JSON.stringify(data.body.sourceRecords[0].source)).replace(/\"/gi,'');
   				var theta = (JSON.stringify(data.body.sourceRecords[0].amount)).replace(/\"/gi,'');
-  				var reply = "<br><br><a><b> ------------------------------- Node Found ------------------------------- </b></a><br><br><a> Address: ".concat(address,"</a><br><br><a> Node Address: ",node,"</a><br><br><a> Theta Balance: ",theta/1000000000000000000,"</a><br>");
+  				var reply = "<br><br><a><b> --------------------------- Node Found ---------------------------- </b></a><br><br><a> Address: ".concat(address,"</a><br><br><a> Node Address: ",node,"</a><br><br><a> Theta Balance: ",theta/1000000000000000000,"</a><br>");
   				document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat(reply);
   				})
   			
@@ -674,7 +674,7 @@ document.getElementById("com").onkeypress = function(event){
   				var theta = (JSON.stringify(data.body.balance.thetawei)).replace(/\"/gi,'');
   				var tfuel = (JSON.stringify(data.body.balance.tfuelwei)).replace(/\"/gi,'');
   				var sequence = (JSON.stringify(data.body.sequence)).replace(/\"/gi,'');
-  				var reply = "<br><br><a><b> ------------------------------ Balance Found ------------------------------ </b></a><br><br><a> Address: ".concat(com.substring(8),"</a><br><br><a> Theta Balance: ",theta/1000000000000000000,"</a><br>","</a><br><a> TFuel Balance: ",tfuel/1000000000000000000,"</a><br><br><a> Sequence: ",sequence,"</a></b><br>");
+  				var reply = "<br><br><a><b> -------------------------- Balance Found -------------------------- </b></a><br><br><a> Address: ".concat(com.substring(8),"</a><br><br><a> Theta Balance: ",theta/1000000000000000000,"</a><br>","</a><br><a> TFuel Balance: ",tfuel/1000000000000000000,"</a><br><br><a> Sequence: ",sequence,"</a></b><br>");
   				document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat(reply);
   				})
   			
@@ -686,7 +686,7 @@ document.getElementById("com").onkeypress = function(event){
   			.then(  function(data) { 
   				var total = (JSON.stringify(data.total_supply)).replace(/\"/gi,'');
   				var circulation = (JSON.stringify(data.circulation_supply)).replace(/\"/gi,'');
-  				var reply = "<br><br><a><b> ------------------------------- Theta Supply ------------------------------- </b></a><br><br><a> Total Supply: ".concat(total,"</a><br>","</a><br><a> Circulation Supply: ",circulation,"</a><br>");
+  				var reply = "<br><br><a><b> --------------------------- Theta Supply -------------------------- </b></a><br><br><a> Total Supply: ".concat(total,"</a><br>","</a><br><a> Circulation Supply: ",circulation,"</a><br>");
   				document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat(reply);
   				})
   			
@@ -697,7 +697,7 @@ document.getElementById("com").onkeypress = function(event){
   			.then( res => res.json() )
   			.then(  function(data) { 
   				var circulation = (JSON.stringify(data.circulation_supply)).replace(/\"/gi,'');
-  				var reply = "<br><br><a><b> ------------------------------- TFuel Supply ------------------------------- </b></a><br><br><a> Circulation Supply: ".concat(circulation,"</a><br>");
+  				var reply = "<br><br><a><b> --------------------------- TFuel Supply -------------------------- </b></a><br><br><a> Circulation Supply: ".concat(circulation,"</a><br>");
   				document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat(reply);
   				})
   			
@@ -710,7 +710,7 @@ document.getElementById("com").onkeypress = function(event){
   				var total = (JSON.stringify(data.body.totalAmount)).replace(/\"/gi,'');
   				var total = total / 1000000000000000000;
   				var nodes = (JSON.stringify(data.body.totalNodes)).replace(/\"/gi,'');
-  				var reply = "<br><br><a><b> ---------------------------- Total Theta Staked ---------------------------- </b></a><br><br><a> Total Amount: ".concat(total,"</a><br>","</a><br><a> Total Nodes: ",nodes,"</a><br>");
+  				var reply = "<br><br><a><b> ------------------------ Total Theta Staked ------------------------ </b></a><br><br><a> Total Amount: ".concat(total,"</a><br>","</a><br><a> Total Nodes: ",nodes,"</a><br>");
   				document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat(reply);
   				})
   			
