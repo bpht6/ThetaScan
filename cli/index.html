@@ -347,28 +347,27 @@ document.getElementById("com").onkeypress = function(event){
 		var next = "<br><br><a> Theta $ &nbsp;".concat(com);
 		var nextline = next.concat("<br>");
 		document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat(nextline);
-		if (document.getElementById("com").value != "" || document.getElementById("com").value != " "){
-			document.getElementById("history20").value = document.getElementById("history19").value;
-			document.getElementById("history19").value = document.getElementById("history18").value;
-			document.getElementById("history18").value = document.getElementById("history17").value;
-			document.getElementById("history17").value = document.getElementById("history16").value;
-			document.getElementById("history16").value = document.getElementById("history15").value;
-			document.getElementById("history15").value = document.getElementById("history14").value;
-			document.getElementById("history14").value = document.getElementById("history13").value;
-			document.getElementById("history13").value = document.getElementById("history12").value;
-			document.getElementById("history12").value = document.getElementById("history11").value;
-			document.getElementById("history11").value = document.getElementById("history10").value;
-			document.getElementById("history10").value = document.getElementById("history9").value;
-			document.getElementById("history9").value = document.getElementById("history8").value;
-			document.getElementById("history8").value = document.getElementById("history7").value;
-			document.getElementById("history7").value = document.getElementById("history6").value;
-			document.getElementById("history6").value = document.getElementById("history5").value;
-			document.getElementById("history5").value = document.getElementById("history4").value;
-			document.getElementById("history4").value = document.getElementById("history3").value;
-			document.getElementById("history3").value = document.getElementById("history2").value;
-			document.getElementById("history2").value = document.getElementById("history1").value;
-			document.getElementById("history1").value = document.getElementById("com").value;
-		}
+		document.getElementById("history20").value = document.getElementById("history19").value;
+		document.getElementById("history19").value = document.getElementById("history18").value;
+		document.getElementById("history18").value = document.getElementById("history17").value;
+		document.getElementById("history17").value = document.getElementById("history16").value;
+		document.getElementById("history16").value = document.getElementById("history15").value;
+		document.getElementById("history15").value = document.getElementById("history14").value;
+		document.getElementById("history14").value = document.getElementById("history13").value;
+		document.getElementById("history13").value = document.getElementById("history12").value;
+		document.getElementById("history12").value = document.getElementById("history11").value;
+		document.getElementById("history11").value = document.getElementById("history10").value;
+		document.getElementById("history10").value = document.getElementById("history9").value;
+		document.getElementById("history9").value = document.getElementById("history8").value;
+		document.getElementById("history8").value = document.getElementById("history7").value;
+		document.getElementById("history7").value = document.getElementById("history6").value;
+		document.getElementById("history6").value = document.getElementById("history5").value;
+		document.getElementById("history5").value = document.getElementById("history4").value;
+		document.getElementById("history4").value = document.getElementById("history3").value;
+		document.getElementById("history3").value = document.getElementById("history2").value;
+		document.getElementById("history2").value = document.getElementById("history1").value;
+		document.getElementById("history1").value = document.getElementById("com").value;
+		
 		if (com == "help") {
 
   			document.getElementById("0").innerHTML = document.getElementById("0").innerHTML.concat("<br><br><a><b>Commands: </b></a><br><br>"+
