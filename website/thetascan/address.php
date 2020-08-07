@@ -67,12 +67,28 @@ $tfuel= $details['result']['coins']['tfuelwei']/1000000000000000000;
 $sequence= $details['result']['sequence'];
 $theta_value = $theta * $theta_price;
 $tfuel_value = $tfuel * $tfuel_price;
+$online= $details['id'];
 
 echo'
 <html>
 <title>ThetaScan.io - Address Search</title>
 <head>
 <style>
+.alert {
+	padding: 20px;
+	font-size: 20px;
+	background-color: #ffcc00;
+	width: 1200;
+}
+.alertbtn {
+	margin-left: 15px;
+	font-weight: bold;
+	float: right;
+	font-size: 22px;
+	line-height: 20px;
+	cursor: pointer;
+	transition: 0.3s;
+}
 a.a {
         font-family: Georgia, Times, Times New Roman, serif;
         font-size: 2.1em;
@@ -265,7 +281,18 @@ select{
 		</select>
      	</form>
  	 </div>
-</div>
+</div>';
+if ($online <> "1") {
+echo'
+	<div class="alert" id="message">
+		<span class="alertbtn" onclick="hide();">&times;</span>
+		<b>Alert:</b> The node is offline and will not display balances at the moment.<br>
+		Do not worry your Theta and TFuel are safe and secure.<br>
+	 	Check back later and the node should be back online.<br>	
+</div> 
+<br>';
+}
+echo'
 <br>
 
 <div class="a">
