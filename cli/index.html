@@ -343,6 +343,7 @@ function checkKey(event) {
 		
 document.getElementById("com").onkeypress = function(event){
 	if (event.keyCode == 13 || event.which == 13){
+		document.getElementById("number").value = "1";
 		var com = document.getElementById("com").value;
 		var next = "<br><br><a> Theta $ &nbsp;".concat(com);
 		var nextline = next.concat("<br>");
