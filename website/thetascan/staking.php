@@ -29,6 +29,8 @@ $result = mysqli_query($con, "SELECT * FROM staking_wallets ORDER BY theta ASC")
 		if ($row['status']=="withdraw"){
 			$withdraw[$row['address']][1]= $row['theta'];
 			$withdraw[$row['address']][2]= $row['timestamp'];
+			$withdrawing_theta[$row['address']] = $row['theta'];
+			
 		}
 	}
 }
@@ -65,7 +67,7 @@ body {
 div.a {
 
         background-color: #ffffff;
-        width: 600px;
+        width: 1200px;
         display: inline-block;
 }
 div.b {
@@ -195,7 +197,31 @@ select{
 <div id="loading" class="loader"></div><div id="loading2"> Loading - Transactions </div>';
 ob_flush();
 flush();
+foreach ($staking as $wallet_add => $theta_value) {
+	$active_theta = $active_theta + $theta_value;
+}
+foreach ($inactive as $wallet_add => $theta_value2) {
+	$inactive_theta = $inactive_theta + $theta_value2;
+}
+foreach ($withdrawing_theta as $wallet_add => $theta_value3) {
+	$withdraw_theta = $withdraw_theta + $theta_value3;
+}
+
 echo'
+<div class="a">
+	<div class="b" style="width: 400px;"> <a style="float:left;"> Staking Addresses </a></div>
+	<br><br><hr>
+	<div style="width: 400px; float:left; padding: 10px 5px;"><a style="float:left;"> Actively Staking Theta</a></div>
+	<div style="width: 200px; float:left; padding: 10px 5px;"><a style="float:left;"><b>'.number_format($active_theta,0).'</b></a></div>
+	<div style="width: 200px; float:left; padding: 10px 5px;"><a style="float:left;"><b>'.number_format($active_theta/10000000,2).'%</b></a></div><br><br><hr>
+	<div style="width: 400px; float:left; padding: 10px 5px;"><a style="float:left;"> Inactive Staked Theta (Node Offline)</a></div>
+	<div style="width: 200px; float:left; padding: 10px 5px;"><a style="float:left;"><b>'.number_format($inactive_theta,0).'</b></a></div>
+	<div style="width: 200px; float:left; padding: 10px 5px;"><a style="float:left;"><b>'.number_format($inactive_theta/10000000,2).'%</b></a></div><br><br><hr>
+	<div style="width: 400px; float:left; padding: 10px 5px;"><a style="float:left;"> Theta Withdrawn over the last 7 days from a node</a></div>
+	<div style="width: 200px; float:left; padding: 10px 5px;"><a style="float:left;"><b>'.number_format($withdraw_theta,0).'</b></a></div>
+	<div style="width: 200px; float:left; padding: 10px 5px;"><a style="float:left;"><b>'.number_format($withdraw_theta/10000000,2).'%</b></a></div>
+	<br><br><hr>
+</div><br><br>
 <div class="d" id="active">
  	<div class="b"> <a style="float:left; color:#005eff;" href="#" onclick="active()"> Active Staking Addresses </a> &nbsp; &nbsp; | &nbsp; &nbsp; </div>
  	<div class="b"> <a style="float:left;" href="#" onclick="inactive()"> Inactive Addresses </a> &nbsp; &nbsp; | &nbsp; &nbsp; </div>
