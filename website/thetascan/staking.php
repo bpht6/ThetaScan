@@ -9,36 +9,6 @@ $config = parse_ini_file('/var/www/config.ini');
         $user = $config['user'];
         $database2 = $config['database2'];
         $password = $config['password'];
-        
-        
-$con=mysqli_connect($host,$user,$password,$database2);
-if (mysqli_connect_errno()) {
-	echo "Failed to connect to MySQL: " . mysqli_connect_error();
-}
-
-
-$result = mysqli_query($con, "SELECT * FROM staking_wallets ORDER BY theta ASC") ;
-{  
-	while($row = mysqli_fetch_array($result)) {
-		if ($row['status']=="active"){
-			$staking[$row['address']]= $row['theta'];
-		}
-		if ($row['status']=="inactive"){
-			$inactive[$row['address']]= $row['theta'];
-		}
-		if ($row['status']=="withdraw"){
-			$withdraw[$row['address']][1]= $row['theta'];
-			$withdraw[$row['address']][2]= $row['timestamp'];
-			$withdrawing_theta[$row['address']] = $row['theta'];
-			
-		}
-	}
-}
-
-
-arsort($staking);
-arsort($inactive);
-arsort($withdraw);
 
 echo'
 <html>
@@ -194,9 +164,38 @@ select{
   	</div>
 </div>
 <br>
-<div id="loading" class="loader"></div><div id="loading2"> Loading - Transactions </div>';
+<div id="loading" class="loader"></div><div id="loading2"> Loading - Staking Data </div>';
 ob_flush();
 flush();
+$con=mysqli_connect($host,$user,$password,$database2);
+if (mysqli_connect_errno()) {
+	echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
+
+
+$result = mysqli_query($con, "SELECT * FROM staking_wallets ORDER BY theta ASC") ;
+{  
+	while($row = mysqli_fetch_array($result)) {
+		if ($row['status']=="active"){
+			$staking[$row['address']]= $row['theta'];
+		}
+		if ($row['status']=="inactive"){
+			$inactive[$row['address']]= $row['theta'];
+		}
+		if ($row['status']=="withdraw"){
+			$withdraw[$row['address']][1]= $row['theta'];
+			$withdraw[$row['address']][2]= $row['timestamp'];
+			$withdrawing_theta[$row['address']] = $row['theta'];
+			
+		}
+	}
+}
+
+
+arsort($staking);
+arsort($inactive);
+arsort($withdraw);
+
 foreach ($staking as $wallet_add => $theta_value) {
 	$active_theta = $active_theta + $theta_value;
 }
